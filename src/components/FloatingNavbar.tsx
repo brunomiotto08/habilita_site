@@ -18,10 +18,10 @@ export const FloatingNavbar = () => {
   });
 
   const links = [
-    { name: "Serviços", href: "#servicos" },
-    { name: "Projetos", href: "#projetos" },
-    { name: "Processo", href: "#processo" },
+    { name: "Serviços",   href: "#servicos"   },
+    { name: "Projetos",   href: "#projetos"   },
     { name: "Trajetória", href: "#trajetoria" },
+    { name: "Processo",   href: "#processo"   },
     { name: "Tecnologia", href: "#tecnologia" },
   ];
 

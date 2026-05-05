@@ -41,9 +41,13 @@ export const ProcessoSection = () => {
           transition={{ duration: 0.6 }}
           className="mb-20 text-center flex flex-col items-center"
         >
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[rgba(227,107,41,0.3)] bg-[rgba(227,107,41,0.08)] text-accent text-sm font-semibold tracking-wider uppercase mb-6">
-            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-            Como trabalhamos
+          {/* Eyebrow — linhas simétricas */}
+          <div className="flex items-center justify-center gap-4 mb-6">
+            <div className="w-10 h-[1.5px] bg-accent/50 rounded-full" />
+            <span className="font-display-label text-accent tracking-widest text-[11px] uppercase">
+              Como trabalhamos
+            </span>
+            <div className="w-10 h-[1.5px] bg-accent/50 rounded-full" />
           </div>
           
           <div className="flex flex-col gap-1 items-center">

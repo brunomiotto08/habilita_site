@@ -104,7 +104,7 @@ export const HeroSection = () => {
 
         {/* Content Layer */}
         <div className="relative z-10 w-full max-w-[1400px] mx-auto px-6 lg:px-16 xl:px-24 flex flex-col items-start justify-center h-full">
-          <div className="max-w-2xl w-full pt-24 mt-12">
+          <div className="max-w-2xl w-full pt-10">
             
             {/* Eyebrow Badge */}
             <motion.div

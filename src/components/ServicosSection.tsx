@@ -4,6 +4,8 @@ import { Cpu, Zap, ShieldCheck, Wrench, Settings2 } from "lucide-react";
 import { TextReveal } from "./ui/TextReveal";
 import { BentoCard } from "./ui/BentoCard";
 import { springEntrance } from "../lib/animations";
+// @ts-ignore
+import logo from "../assets/img/logo_habilita.svg";
 
 const servicos = [
   {
@@ -59,51 +61,67 @@ export const ServicosSection = () => {
   return (
     <section id="servicos" className="pt-[40px] pb-[100px] px-4 max-w-7xl mx-auto relative z-20">
       <div className="mb-10">
-        {/* Eyebrow Badge */}
+        {/* Eyebrow — linha acento */}
         <motion.div
-          className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[rgba(44,45,94,0.05)] border border-[rgba(44,45,94,0.1)] mb-6 backdrop-blur-sm"
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          className="flex items-center gap-3 mb-6"
+          initial={{ opacity: 0, x: -16 }}
+          whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, amount: 0 }}
           transition={springEntrance}
         >
-          <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
-          <span className="font-display-label text-[rgba(44,45,94,0.85)] tracking-widest text-[10px]">
-            O QUE FAZEMOS
+          <div className="w-8 h-[2px] bg-accent rounded-full" />
+          <span className="font-display-label text-accent tracking-widest text-[11px] uppercase">
+            O que fazemos
           </span>
         </motion.div>
-        
-        <div className="flex flex-col gap-1 drop-shadow-xl">
-          <div className="flex flex-wrap gap-[0.25em]">
-            <TextReveal
-              text="Serviços"
-              className="font-display-section font-light text-[clamp(40px,5vw,64px)] leading-[1.05] tracking-tight"
-              textClassName="bg-gradient-to-br from-primary to-[#4b4d8c] bg-clip-text text-transparent pb-1"
-            />
-            <TextReveal
-              text="que movem"
-              className="font-display-section font-black text-[clamp(40px,5vw,64px)] leading-[1.05] tracking-tighter"
-              textClassName="bg-gradient-to-br from-primary to-[#4b4d8c] bg-clip-text text-transparent pb-1"
-              delay={0.1}
-            />
+
+        {/* Título + Logo lado a lado */}
+        <div className="flex items-start justify-between gap-6">
+          <div className="flex flex-col gap-1 drop-shadow-xl">
+            <div className="flex flex-wrap gap-[0.25em]">
+              <TextReveal
+                text="Serviços"
+                className="font-display-section font-light text-[clamp(40px,5vw,64px)] leading-[1.05] tracking-tight"
+                textClassName="bg-gradient-to-br from-primary to-[#4b4d8c] bg-clip-text text-transparent pb-1"
+              />
+              <TextReveal
+                text="que movem"
+                className="font-display-section font-black text-[clamp(40px,5vw,64px)] leading-[1.05] tracking-tighter"
+                textClassName="bg-gradient-to-br from-primary to-[#4b4d8c] bg-clip-text text-transparent pb-1"
+                delay={0.1}
+              />
+            </div>
+            <div className="flex flex-wrap gap-[0.25em]">
+              <TextReveal
+                text="a"
+                className="font-display-section font-light text-[clamp(40px,5vw,64px)] leading-[1.05] tracking-tight"
+                textClassName="bg-gradient-to-br from-accent to-[#f58442] bg-clip-text text-transparent pb-1"
+                delay={0.2}
+              />
+              <TextReveal
+                text="indústria."
+                className="font-display-section font-black text-[clamp(40px,5vw,64px)] leading-[1.05] tracking-tighter"
+                textClassName="bg-gradient-to-br from-accent to-[#f58442] bg-clip-text text-transparent pb-1"
+                delay={0.3}
+              />
+            </div>
           </div>
-          <div className="flex flex-wrap gap-[0.25em]">
-            <TextReveal
-              text="a"
-              className="font-display-section font-light text-[clamp(40px,5vw,64px)] leading-[1.05] tracking-tight"
-              textClassName="bg-gradient-to-br from-accent to-[#f58442] bg-clip-text text-transparent pb-1"
-              delay={0.2}
-            />
-            <TextReveal
-              text="indústria."
-              className="font-display-section font-black text-[clamp(40px,5vw,64px)] leading-[1.05] tracking-tighter"
-              textClassName="bg-gradient-to-br from-accent to-[#f58442] bg-clip-text text-transparent pb-1"
-              delay={0.3}
-            />
-          </div>
+
+          {/* Logo colada à direita, alinhada ao fundo do título */}
+          <motion.img
+            src={logo}
+            alt="Habilita Automação"
+            className="hidden sm:block h-24 w-auto object-contain object-right shrink-0"
+            initial={{ opacity: 0, x: 16 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0 }}
+            transition={{ ...springEntrance, delay: 0.3 }}
+          />
         </div>
+
         <div className="section-divider mt-4 mb-2" />
       </div>
+
 
       <motion.div
         ref={containerRef}

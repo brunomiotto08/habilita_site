@@ -89,19 +89,8 @@ const MetricCard = ({ metrica, index }: { metrica: typeof metricas[number]; inde
 
 export const DiferenciaisSection = () => {
   return (
-    <section id="diferenciais" className="bg-primary py-[120px] px-4 overflow-hidden relative">
-      {/* marca d'água — logo em ghost mode no fundo */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-        <img
-          src={logo}
-          alt=""
-          aria-hidden="true"
-          className="w-[600px] max-w-[80vw] opacity-[0.035]"
-          style={{ filter: "invert(1) brightness(2)" }}
-        />
-      </div>
-
-      <div className="max-w-6xl mx-auto relative z-10">
+    <section id="diferenciais" className="bg-primary py-[120px] px-4 overflow-hidden">
+      <div className="max-w-6xl mx-auto">
 
         {/* cabeçalho */}
         <motion.div
@@ -111,6 +100,14 @@ export const DiferenciaisSection = () => {
           viewport={{ once: true, amount: 0 }}
           transition={springEntrance}
         >
+          {/* logo branca — visível sobre fundo escuro */}
+          <img
+            src={logo}
+            alt="Habilita Automação"
+            className="h-12 w-auto object-contain mx-auto mb-8"
+            style={{ filter: "brightness(0) invert(1)" }}
+          />
+
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[rgba(255,255,255,0.08)] border border-[rgba(255,255,255,0.12)] mb-6 backdrop-blur-sm">
             <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
             <span className="font-display-label text-[rgba(255,255,255,0.75)] tracking-widest text-[10px]">
