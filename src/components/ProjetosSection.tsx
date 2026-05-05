@@ -223,8 +223,8 @@ export const ProjetosSection = () => {
                 <React.Fragment key={s.label}>
                   {i > 0 && <div className="w-px self-stretch bg-[rgba(44,45,94,0.1)]" />}
                   <div className="text-center">
-                    <p className="font-display-section text-[28px] font-black text-primary leading-none">{s.value}</p>
-                    <p className="font-ui text-[11px] text-[rgba(44,45,94,0.45)] mt-1 uppercase tracking-wider">{s.label}</p>
+                    <p className="font-display-section text-[42px] font-black text-primary leading-none">{s.value}</p>
+                    <p className="font-ui text-[12px] text-[rgba(44,45,94,0.45)] mt-1 uppercase tracking-wider">{s.label}</p>
                   </div>
                 </React.Fragment>
               ))}

@@ -41,54 +41,51 @@ export const TecnologiaSection = () => {
   return (
     <section className="relative w-full px-4 py-[120px] section-bg-alt" id="tecnologia">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end gap-12 mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0 }}
-            transition={{ duration: 0.6 }}
-            className="flex-1"
-          >
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[rgba(227,107,41,0.3)] bg-[rgba(227,107,41,0.08)] text-accent text-sm font-semibold tracking-wider uppercase mb-6">
-              <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              Tecnologia
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0 }}
+          transition={{ duration: 0.6 }}
+          className="mb-16"
+        >
+          {/* Badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-[rgba(227,107,41,0.3)] bg-[rgba(227,107,41,0.08)] text-accent text-sm font-semibold tracking-wider uppercase mb-6">
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            Tecnologia
+          </div>
+
+          {/* Título */}
+          <div className="flex flex-col gap-1">
+            <div className="flex flex-wrap gap-[0.25em]">
+              <TextReveal
+                text="Equipamentos"
+                className="font-display-section font-light text-[clamp(40px,5vw,64px)] leading-[1.05] tracking-tight"
+                textClassName="bg-gradient-to-br from-primary to-[#4b4d8c] bg-clip-text text-transparent pb-1"
+              />
             </div>
-            
-            <div className="flex flex-col gap-1">
-              <div className="flex flex-wrap gap-[0.25em]">
-                <TextReveal
-                  text="Equipamentos"
-                  className="font-display-section font-light text-[clamp(40px,5vw,64px)] leading-[1.05] tracking-tight"
-                  textClassName="bg-gradient-to-br from-primary to-[#4b4d8c] bg-clip-text text-transparent pb-1"
-                />
-              </div>
-              <div className="flex flex-wrap gap-[0.25em]">
-                <TextReveal
-                  text="e"
-                  className="font-display-section font-light text-[clamp(40px,5vw,64px)] leading-[1.05] tracking-tight"
-                  textClassName="bg-gradient-to-br from-primary to-[#4b4d8c] bg-clip-text text-transparent pb-1"
-                  delay={0.1}
-                />
-                <TextReveal
-                  text="plataformas."
-                  className="font-display-section font-black text-[clamp(40px,5vw,64px)] leading-[1.05] tracking-tighter"
-                  textClassName="bg-gradient-to-br from-accent to-[#f58442] bg-clip-text text-transparent pb-1"
-                  delay={0.2}
-                />
-              </div>
+            <div className="flex flex-wrap gap-[0.25em]">
+              <TextReveal
+                text="e"
+                className="font-display-section font-light text-[clamp(40px,5vw,64px)] leading-[1.05] tracking-tight"
+                textClassName="bg-gradient-to-br from-primary to-[#4b4d8c] bg-clip-text text-transparent pb-1"
+                delay={0.1}
+              />
+              <TextReveal
+                text="plataformas."
+                className="font-display-section font-black text-[clamp(40px,5vw,64px)] leading-[1.05] tracking-tighter"
+                textClassName="bg-gradient-to-br from-accent to-[#f58442] bg-clip-text text-transparent pb-1"
+                delay={0.2}
+              />
             </div>
-            <div className="section-divider mt-4" />
-          </motion.div>
-          <motion.p 
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, amount: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="font-body text-[18px] text-[rgba(44,45,94,0.65)] max-w-[400px]"
-          >
+          </div>
+
+          <div className="section-divider mt-4 mb-4" />
+
+          {/* Parágrafo — abaixo do divider, alinhado à esquerda */}
+          <p className="font-body text-[18px] text-[rgba(44,45,94,0.65)] max-w-[560px] mt-2">
             Trabalhamos com os fabricantes líderes do mercado industrial, garantindo qualidade, suporte e confiabilidade em todos os projetos.
-          </motion.p>
-        </div>
+          </p>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {technologies.map((tech, i) => (

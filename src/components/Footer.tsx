@@ -49,7 +49,7 @@ export const Footer = () => {
             </li>
             <li className="pt-2">
               <span className="font-body text-[14px] text-[rgba(44,45,94,0.6)]">
-                Av. Industrial, 1000 - São Paulo, SP
+                R. Rodolfo Miotto, Vila Flores - RS, 95334-000
               </span>
             </li>
           </ul>
