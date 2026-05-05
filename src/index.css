@@ -1,0 +1,130 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-background-global: #d9d8d8;
+    --color-primary: #2c2d5e;
+    --color-accent: #e36b29;
+    --color-surface: rgba(255, 255, 255, 0.55);
+    --color-border-subtle: rgba(44, 45, 94, 0.12);
+    --color-border-hover: rgba(227, 107, 41, 0.6);
+  }
+
+  html, body {
+    @apply m-0 p-0;
+    background-color: var(--color-background-global);
+    /* Noise texture */
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 200px;
+    background-repeat: repeat;
+    color: rgba(44,45,94,0.75);
+    font-family: 'Inter', sans-serif;
+    cursor: none; /* Hide default cursor to use custom cursor */
+  }
+
+  /* Make sure links and buttons hide default cursor */
+  a, button, input, textarea {
+    cursor: none;
+  }
+
+  /* Typography Rules from Prompt */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Montserrat', sans-serif;
+  }
+
+  .font-display-hero {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.04em;
+    color: var(--color-primary);
+  }
+
+  .font-display-section {
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: -0.03em;
+    color: var(--color-primary);
+  }
+
+  .font-display-label {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    font-size: 11px;
+    color: var(--color-accent);
+  }
+
+  .font-body {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    line-height: 1.7;
+    color: rgba(44,45,94,0.75);
+  }
+
+  .font-ui {
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    color: var(--color-primary);
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(44, 45, 94, 0.05);
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(44, 45, 94, 0.2);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent);
+}
+
+/* Base components like dot grid for hero */
+.hero-dot-grid {
+  background-image: radial-gradient(rgba(44, 45, 94, 0.07) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+}
+
+/* Section background variants */
+.section-bg-default {
+  background-color: #d9d8d8;
+  background-image: 
+    radial-gradient(ellipse 80% 50% at 15% 20%, rgba(44, 45, 94, 0.04) 0%, transparent 70%),
+    radial-gradient(ellipse 60% 40% at 85% 80%, rgba(227, 107, 41, 0.04) 0%, transparent 70%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  background-size: cover, cover, 200px;
+}
+
+.section-bg-alt {
+  background-color: #e0dede;
+  background-image:
+    radial-gradient(ellipse 70% 50% at 80% 10%, rgba(44, 45, 94, 0.05) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 10% 90%, rgba(227, 107, 41, 0.05) 0%, transparent 70%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  background-size: cover, cover, 200px;
+}
+
+.section-bg-dark {
+  background-color: #2c2d5e;
+  background-image:
+    radial-gradient(ellipse 60% 50% at 20% 30%, rgba(75, 77, 140, 0.5) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 85% 70%, rgba(227, 107, 41, 0.15) 0%, transparent 70%);
+}
+
+/* Decorative horizontal divider for sections */
+.section-divider {
+  width: 48px;
+  height: 3px;
+  border-radius: 99px;
+  background: linear-gradient(90deg, var(--color-accent), transparent);
+}
+
