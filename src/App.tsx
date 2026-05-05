@@ -35,19 +35,17 @@ const PageLoader = ({ onComplete }: { onComplete: () => void }) => {
       }}
     >
       <motion.div 
-        className="mb-8"
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
+        className="mb-6"
+        initial={{ opacity: 0, scale: 0.85, y: 10 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
         transition={{ delay: 0.1, type: "spring", stiffness: 200, damping: 20 }}
       >
-        <div className="bg-[var(--color-background-global)] rounded-[24px] p-6 shadow-2xl flex items-center justify-center">
-          <img 
-            src={logo} 
-            alt="Habilita Automação" 
-            className="h-24 w-auto object-contain"
-            style={{ mixBlendMode: "darken" }}
-          />
-        </div>
+        <img 
+          src={logo} 
+          alt="Habilita Automação" 
+          className="h-20 w-auto object-contain"
+          style={{ filter: "brightness(0) invert(1)" }}
+        />
       </motion.div>
       <div className="text-white font-display-hero text-[clamp(32px,5vw,56px)] flex items-center">
         <TextReveal text="Habilita" delay={0.1} />
