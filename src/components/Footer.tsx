@@ -1,16 +1,19 @@
 import React from "react";
+// @ts-ignore
+import logo from "../assets/img/logo_habilita.svg";
 
 export const Footer = () => {
   return (
     <footer className="bg-[rgba(44,45,94,0.04)] border-t border-[rgba(44,45,94,0.1)] pt-16 pb-8 px-4">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-12 mb-16">
-        
+
         {/* Col 1: Logo & Tagline */}
         <div className="flex flex-col md:w-1/3">
-          <div className="flex items-baseline mb-4">
-            <span className="font-display-hero text-[20px] text-primary">Habilita</span>
-            <span className="font-display-hero text-[20px] text-primary font-normal ml-1">Automação</span>
-          </div>
+          <img
+            src={logo}
+            alt="Habilita Automação"
+            className="h-14 w-auto object-contain object-left mb-4 opacity-90"
+          />
           <p className="font-body text-[14px] text-[rgba(44,45,94,0.6)]">
             Engenharia de precisão e soluções completas em automação industrial para quem não aceita meio-termo.
           </p>

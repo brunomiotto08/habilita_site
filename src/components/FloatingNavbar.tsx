@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion, useScroll, useMotionValueEvent, AnimatePresence } from "framer-motion";
 import { springSnappy } from "../lib/animations";
 // @ts-ignore
-import logo from "../assets/img/logo_habilita.png";
+import logo from "../assets/img/logo_habilita.svg";
 
 export const FloatingNavbar = () => {
   const { scrollY } = useScroll();

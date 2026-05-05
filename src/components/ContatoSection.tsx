@@ -4,7 +4,7 @@ import { MessageCircle, Mail } from "lucide-react";
 import { TextReveal } from "./ui/TextReveal";
 import { springSnappy, springEntrance } from "../lib/animations";
 // @ts-ignore
-import logo from "../assets/img/logo_habilita.png";
+import logo from "../assets/img/logo_habilita.svg";
 
 const InputField = ({ label, type = "text", as: Component = "input", ...props }: any) => {
   const [isFocused, setIsFocused] = useState(false);

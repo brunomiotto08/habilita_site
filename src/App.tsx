@@ -16,7 +16,7 @@ import { ContatoSection } from "./components/ContatoSection";
 import { Footer } from "./components/Footer";
 import { TextReveal } from "./components/ui/TextReveal";
 // @ts-ignore
-import logo from "./assets/img/logo_habilita.png";
+import logo from "./assets/img/logo_habilita.svg";
 
 const PageLoader = ({ onComplete }: { onComplete: () => void }) => {
   return (

@@ -2,6 +2,8 @@ import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring, useInView } from "framer-motion";
 import { TextReveal } from "./ui/TextReveal";
 import { springGravity, springEntrance } from "../lib/animations";
+// @ts-ignore
+import logo from "../assets/img/logo_habilita.svg";
 
 const marcos = [
   { ano: "2020", descricao: "Fundação da Habilita Automação e início das operações" },
@@ -117,6 +119,16 @@ export const TrajetoriaSection = () => {
             >
               Nossa história é marcada por um compromisso inabalável com a excelência técnica. Cada projeto entregue consolida nossa posição como referência no setor industrial.
             </motion.p>
+
+            {/* logo sutil abaixo da descrição */}
+            <motion.img
+              src={logo}
+              alt="Habilita Automação"
+              className="mt-10 h-10 w-auto object-contain object-left opacity-20"
+              initial={{ opacity: 0, y: 12 }}
+              animate={isSectionInView ? { opacity: 0.2, y: 0 } : { opacity: 0, y: 12 }}
+              transition={{ delay: 0.5, ...springEntrance }}
+            />
           </div>
 
           {/* Right Column - Timeline */}
