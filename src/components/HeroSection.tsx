@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from "react";
-import { motion } from "framer-motion";
+import React, { useRef, useEffect, useState } from "react";
+import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { TextReveal } from "./ui/TextReveal";
 import { springSnappy, springEntrance } from "../lib/animations";
 // @ts-ignore
@@ -8,18 +8,41 @@ import heroVideo from "../assets/videos/hero-video.mp4";
 export const HeroSection = () => {
   const containerRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [duration, setDuration] = useState(0);
 
-  // Auto-play the video when the component mounts to ensure it plays smoothly
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
+
+  const rafId = useRef<number | null>(null);
+  const lastTimeUpdate = useRef<number>(0);
+
+  // Scrub the video when scroll progress changes, using scrollYProgress directly
+  // avoiding useSpring to prevent excessive micro-updates that freeze the video decoder
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (!videoRef.current || duration === 0) return;
+
+    if (rafId.current === null) {
+      rafId.current = requestAnimationFrame(() => {
+        if (videoRef.current) {
+          // Throttling tiny updates can also help if needed, but removing useSpring is the main fix
+          videoRef.current.currentTime = latest * duration;
+        }
+        rafId.current = null;
+      });
+    }
+  });
+
+  // Fix for iOS/Safari: Ensure video is loaded to get duration reliably
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.play().catch(error => {
-        console.warn("Video autoplay failed:", error);
-      });
+      videoRef.current.load();
     }
   }, []);
 
   return (
-    <section ref={containerRef} className="relative h-screen w-full bg-[var(--color-background-global)]">
+    <section ref={containerRef} className="relative h-[250vh] w-full bg-[var(--color-background-global)]">
       {/* Sticky container that stays on screen while scrolling */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
         
@@ -32,9 +55,8 @@ export const HeroSection = () => {
               className="w-full h-full object-cover opacity-90"
               muted
               playsInline
-              loop
-              autoPlay
               preload="auto"
+              onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
             />
             {/* Left Edge Fade Overlay (Replaces expensive maskImage) */}
             <div 

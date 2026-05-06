@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from "react";
-import { motion, useInView } from "framer-motion";
+import React, { useRef, useEffect, useState } from "react";
+import { motion, useInView, useScroll, useMotionValueEvent } from "framer-motion";
 import { TextReveal } from "./ui/TextReveal";
 import { springSnappy, springEntrance } from "../lib/animations";
 // @ts-ignore
@@ -8,20 +8,40 @@ import clpVideo from "../assets/videos/clp-video.mp4";
 export const ClpSection = () => {
   const containerRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [duration, setDuration] = useState(0);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"]
+  });
 
   const isInView = useInView(containerRef, { once: true, amount: 0 });
 
-  // Auto-play the video when the component mounts
+  const rafId = useRef<number | null>(null);
+
+  // Scrub the video when scroll progress changes
+  useMotionValueEvent(scrollYProgress, "change", (latest) => {
+    if (!videoRef.current || duration === 0) return;
+
+    if (rafId.current === null) {
+      rafId.current = requestAnimationFrame(() => {
+        if (videoRef.current) {
+          videoRef.current.currentTime = latest * duration;
+        }
+        rafId.current = null;
+      });
+    }
+  });
+
+  // Fix for iOS/Safari: Ensure video is loaded to get duration reliably
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.play().catch(error => {
-        console.warn("Video autoplay failed:", error);
-      });
+      videoRef.current.load();
     }
   }, []);
 
   return (
-    <section ref={containerRef} className="relative h-screen w-full bg-[var(--color-background-global)]">
+    <section ref={containerRef} className="relative h-[200vh] w-full bg-[var(--color-background-global)]">
       {/* Sticky container that stays on screen while scrolling */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
         
@@ -37,9 +57,8 @@ export const ClpSection = () => {
               }}
               muted
               playsInline
-              loop
-              autoPlay
               preload="auto"
+              onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
             />
             {/* Left Edge Fade Overlay (Replaces expensive maskImage) */}
             <div 
