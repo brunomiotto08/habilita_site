@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
-import cursorImg from "../../assets/img/cursor_habilita.svg";
 
 export const CustomCursor = () => {
   const [hovering, setHovering] = useState(false);
@@ -49,18 +48,17 @@ export const CustomCursor = () => {
         position:     "fixed",
         left:         x,
         top:          y,
+        translateX:   "-50%",
+        translateY:   "-50%",
         pointerEvents:"none",
         zIndex:       9999,
-        backgroundImage: `url(${cursorImg})`,
-        backgroundSize: "contain",
-        backgroundRepeat: "no-repeat",
-        backgroundPosition: "center",
+        borderRadius: "50%",
+        backgroundColor: "white",
+        mixBlendMode: "difference",
       }}
       animate={{
-        width:  hovering ? 48 : 32,
-        height: hovering ? 48 : 32,
-        translateX: hovering ? "-50%" : "0%",
-        translateY: hovering ? "-50%" : "0%",
+        width:  hovering ? 60 : 24,
+        height: hovering ? 60 : 24,
       }}
       transition={{ type: "spring", stiffness: 300, damping: 26, mass: 0.5 }}
     />
