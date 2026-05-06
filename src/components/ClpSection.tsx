@@ -1,5 +1,5 @@
-import React, { useRef, useState, useEffect } from "react";
-import { motion, useScroll, useMotionValueEvent, useInView, useSpring } from "framer-motion";
+import React, { useRef, useEffect } from "react";
+import { motion, useInView } from "framer-motion";
 import { TextReveal } from "./ui/TextReveal";
 import { springSnappy, springEntrance } from "../lib/animations";
 // @ts-ignore
@@ -8,46 +8,20 @@ import clpVideo from "../assets/videos/clp-video.mp4";
 export const ClpSection = () => {
   const containerRef = useRef<HTMLElement>(null);
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [duration, setDuration] = useState(0);
-
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"]
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
 
   const isInView = useInView(containerRef, { once: true, amount: 0 });
 
-  const rafId = useRef<number | null>(null);
-
-  // Scrub the video when scroll progress changes
-  useMotionValueEvent(smoothProgress, "change", (latest) => {
-    if (!videoRef.current || duration === 0) return;
-
-    if (rafId.current === null) {
-      rafId.current = requestAnimationFrame(() => {
-        if (videoRef.current) {
-          videoRef.current.currentTime = latest * duration;
-        }
-        rafId.current = null;
-      });
-    }
-  });
-
-  // Fix for iOS/Safari: Ensure video is loaded to get duration reliably
+  // Auto-play the video when the component mounts
   useEffect(() => {
     if (videoRef.current) {
-      videoRef.current.load();
+      videoRef.current.play().catch(error => {
+        console.warn("Video autoplay failed:", error);
+      });
     }
   }, []);
 
   return (
-    <section ref={containerRef} className="relative h-[200vh] w-full bg-[var(--color-background-global)]">
+    <section ref={containerRef} className="relative h-screen w-full bg-[var(--color-background-global)]">
       {/* Sticky container that stays on screen while scrolling */}
       <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
         
@@ -63,8 +37,9 @@ export const ClpSection = () => {
               }}
               muted
               playsInline
+              loop
+              autoPlay
               preload="auto"
-              onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
             />
             {/* Left Edge Fade Overlay (Replaces expensive maskImage) */}
             <div 
